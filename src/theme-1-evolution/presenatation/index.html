@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>PMKEDU-CN-FEDOSEEV-THEME1-EVOLUTION</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <link rel="stylesheet" href="../../shower/themes/pmk/styles/styles.css">
+    <style>
+        .shower {
+            --slide-ratio: calc(16 / 9);
+        }
+    </style>
+</head>
+<body class="shower list">
+    <header class="caption">
+        <h1>Эволюция компьютерных сетей</h1>
+        <p><a href="">Fedoseev Danil</a>, ГБПОУ ПМК.</p>
+    </header>
+
+    <section class="slide" id="cover">
+        <p>Государственное бюджетное профессиональное образовательное учреждение<br>"Пермский машиностроительный колледж"</p>
+        <img class="logo" src="node_modules/@shower/pmk/pictures/logo.svg">
+        <h2>Тема 1.1 Эволюция компьютерных сетей</h2>
+        <p>Дисциплина: Компьютерные сети</p>
+        <p>Преподаватель: Федоосеев Данил Александрович</p>
+    </section>
+
+    <section class="slide">
+        <h2>Цель</h2>
+        <ul lang="ru">
+            <li>понятие приватные, или внутренние (внутрисетевые, локальные) IP-адреса и публичные, или внешние IP-адреса</li>
+            <li>понятие NAT и PAT</li>
+            <li>настройка NAT/ PAT</li>
+        </ul>
+    </section>
+
+    <section class="slide">
+        <h2>Приватные адреса</h2>
+        <p>Внутренние адреса <mark>класса А</mark> занимают диапазон <mark>от 10.0.0.0 до 10.255.255.255,</mark> а внешние – диапазон от 1.0.0.0 до 9. 255.255.255 и от 11.0.0.0 до 126.255.255.255.</p>
+        <p>Внутренние адреса <mark>класса В</mark> занимают диапазон <mark>от 172.16.0.0 до 172.31.255.255,</mark> а внешние – от 128.0.0.0 до 172.15.255.255 и от 172.32.0.0 до 191.255.255.255.</p>
+        <p>Внутренние адреса <mark>класса С</mark> занимают диапазон <mark>от 192.168.0.0 до 192.168.255.255,</mark> а внешние – от 192.0.0 до 192.167.255.255 и от 192.169.0.0 до 223.255.255.255.</p>
+    </section>
+
+    <section class="slide">
+        <h2>NAT</h2>
+        <p><mark>NAT – это механизм преобразования внутренних адресов во внешние</mark></p>
+        <p>Если устройство, подключенное к интернету, получит пакет от другого устройства из локальной сети, оно просто отбросит этот пакет, так как формат внутреннего адреса не соответствует формату адресов, используемых в глобальной сети интернет</p>
+    </section>
+
+    <section class="slide">
+        <h2>NAT</h2>
+        <p>Существует три типа NAT:</p>
+        <ul lang="ru">
+            <li>статический (Static NAT)</li>
+            <li>динамический (Dynamic NAT)</li>
+            <li>перегруженный (Overloading NAT или PAT)</li>
+        </ul>
+    </section>
+
+    <section class="slide">
+        <h2>Статический NAT</h2>
+        <p><mark>Статический NAT означает взаимно однозначное преобразование внутренних IP-адресов во внешние, или преобразование «один к одному».</mark> Когда устройства отправляют трафик в Интернет, их внутренние адреса Inside Local преобразуются во внутренние адреса Inside Global</p>
+        <p><i>Принцип «один к одному» означает, что если в локальной сети расположены 100 устройств, они получают 100 внешних адресов</i></p>
+    </section>
+
+    <section class="slide">
+        <h2>Static NAT</h2>
+        
+        <img width="65%" src="/pictures/nat_static.jpg">
+        <table>
+            <tr>
+                <th>INSIDE LOCAL</th>
+                <th>INSIDE GLOBAL</th>
+            </tr>
+            <tr>
+                <td>192.168.1.10</td>
+                <td>200.124.22.1</td>
+            </tr>
+            <tr>
+                <td>192.168.1.11</td>
+                <td>200.124.22.2</td>
+            </tr>
+            <tr>
+                <td>192.168.1.12</td>
+                <td>200.124.22.3</td>
+            </tr>
+        </table>
+    </section>
+
+    <section class="slide">
+        <h2>Динамический NAT</h2>
+        <p>Рассмотрим динамический NAT. Он очень похож на статический, но <mark>не присваивает постоянные внешние адреса каждому локальному устройству</mark></p>
+        <p>Например, у нас имеется 3 локальных устройства и всего 2 внешних адреса</p>
+        <p><mark>Если второе устройство захочет выйти в интернет, ему будет присвоен первый свободный IP-адрес</mark></p>
+    </section>
+
+    <section class="slide">
+        <h2>Dynamic NAT</h2>
+        
+        <img width="65%" src="/pictures/nat_static.jpg">
+        <table>
+            <tr>
+                <th>INSIDE LOCAL</th>
+                <th>INSIDE GLOBAL</th>
+            </tr>
+            <tr>
+                <td>192.168.1.10</td>
+                <td>200.124.22.1</td>
+            </tr>
+            <tr>
+                <td>192.168.1.11</td>
+                <td>200.124.22.2</td>
+            </tr>
+            <tr>
+                <td>192.168.1.12</td>
+                <td></td>
+            </tr>
+        </table>
+    </section>
+
+    <section class="slide">
+        <h2>Перегруженный NAT</h2>
+        <p>Перегруженный NAT, или PAT. <mark>Это наиболее распространенный тип NAT.</mark></p>
+        <p>В вашей домашней сети может быть множество устройств – ПК, смартфон, ноутбук, планшет, и все они подсоединяются к роутеру, который имеет один внешний IP-адрес.</p>
+        <p>Так вот, PAT <mark>позволяет множеству устройств с внутренними IP-адресами одновременно выходить в интернет под одним внешним IP-адресом.</mark></p>
+    </section>
+
+    <section class="slide">
+        <h2>Overload NAT</h2>
+        
+        <img width="65%" src="/pictures/nat_static.jpg">
+        <table>
+            <tr>
+                <th>INSIDE LOCAL</th>
+                <th>INSIDE GLOBAL</th>
+            </tr>
+            <tr>
+                <td>192.168.1.10</td>
+                <td>200.124.22.1</td>
+            </tr>
+            <tr>
+                <td>192.168.1.11</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>192.168.1.12</td>
+                <td></td>
+            </tr>
+        </table>
+    </section>
+
+    <section class="slide">
+        <h2 class="shout">Перенагравление, переадрисация портов (Port forwarding)</h2>
+    </section>
+
+    <section class="slide">
+        <h2>Перенаправление портов</h2>
+        <p>Port Forwarding – или проброс портов, который также иногда называемый перенаправлением портов или туннелированием – это <mark>процесс пересылки трафика, адресованного конкретному сетевому порту с одного сетевого узла на другой</mark></p>
+        <p>Этот метод позволяет внешнему пользователю достичь порта на частном IPv4-адресе (внутри локальной сети) извне, через маршрутизатор с поддержкой NAT</p>
+    </section>
+    
+    <section class="slide">
+        <h2 class="shout">The End</h2>
+    </section>
+
+    <div class="progress"></div>
+
+    <script src="../../shower/shower.js"></script>
+    <!-- Copyright © 2023 Fedoseev Danil, GBPOU PMK -->
+
+</body>
+</html>
